@@ -1,7 +1,8 @@
+<button onclick="speak();">Play</button>
 <script>
   const urlParams = new URLSearchParams(window.location.search);
   const text = urlParams.get('text');
-  
+
   const speech = new SpeechSynthesisUtterance();
   const voices = window.speechSynthesis.getVoices();
   const voice = voices[59];
@@ -9,6 +10,7 @@
   speech.voice = voice;
 
   speech.text = text;
-
-  window.speechSynthesis.speak(speech);
+  function speak() {
+    window.speechSynthesis.speak(speech);
+  }
 </script>
