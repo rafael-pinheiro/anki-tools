@@ -1,20 +1,22 @@
 <button onclick="speak();">Play</button>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const text = urlParams.get('text');
+  const urlParams = new URLSearchParams(window.location.search);
+  const text = urlParams.get('text');
 
-    const speech = new SpeechSynthesisUtterance();
-    const voices = window.speechSynthesis.getVoices();
-    console.log(voices);
-    const voice = voices[59];
-    console.log(voice);
-
-    speech.voice = voice;
-
-    speech.text = text;
-    function speak() {
-      window.speechSynthesis.speak(speech);
+  const speech = new SpeechSynthesisUtterance();
+  let synth = window.speechSynthesis;
+  let id;
+  let voices;
+  id = setInterval(() => {
+    voices = synth.getVoices();
+    if (voices.length !== 0) {
+      clearInterval(id);
+      speech.voice = voices[59];
     }
-  }, false);
+  }, 10);
+  
+  speech.text = text;
+  function speak() {
+    window.speechSynthesis.speak(speech);
+  }
 </script>
