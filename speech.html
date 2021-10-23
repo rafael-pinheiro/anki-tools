@@ -5,7 +5,9 @@
 
   const speech = new SpeechSynthesisUtterance();
   const voices = window.speechSynthesis.getVoices();
+  console.log(voices);
   const voice = voices[59];
+  console.log(voice);
 
   speech.voice = voice;
 
